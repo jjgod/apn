@@ -6780,6 +6780,10 @@ PinYinDict = {
 '芿':('reng',),
 '苅':('yi',),
 '苐':('di',),
+'喆':('zhe',),
+'旻':('min',),
+'祎':('yi',),
+'忞':('min',),
 }
 
 PinYinDict.update({
