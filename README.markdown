@@ -14,12 +14,12 @@ AssignPhoneticName.py
 
 2. 执行
 
-$ python AssignPhoneticName.py
+    $ python AssignPhoneticName.py
 
 这个命令会给所有*包含中文*的地址簿项根据 First Name 和 Last Name
 分别分配对应的汉语拼音作为 Phonetic First Name 和 Phonetic Last
-Name。对于已经分配了 Phonetic Name 的，会跳过，除非使用 -r 参数
-调用这个脚本。
+Name。对于已经分配了 Phonetic Name 的，会跳过，除非使用 `-r`
+参数调用这个脚本。
 
 ---
 
