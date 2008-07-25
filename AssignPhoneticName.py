@@ -63,9 +63,6 @@ if len(sys.argv) > 1 and sys.argv[0] == '-r':
     reset = True
 
 for person in ab.people():
-    fname = person.firstName()
-    lname = person.lastName()
-
     fname_pair = assign_pinyin(person.firstName, 
                                person.phoneticFirstName,
                                person.setPhoneticFirstName_)
