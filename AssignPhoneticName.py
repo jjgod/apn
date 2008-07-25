@@ -51,7 +51,7 @@ def assign_pinyin(getName, getPhoneticName, setPhoneticName):
             return None
 
         name_py = pinyin.hanzi2pinyin(name).capitalize()
-        # setPhoneticName(name_py)
+        setPhoneticName(name_py)
 
         return (name, name_py)
 
