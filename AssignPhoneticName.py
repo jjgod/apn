@@ -1,8 +1,7 @@
 #!/usr/bin/python
 
 import sys, pinyin
-from Foundation import *
-from ScriptingBridge import *
+import AddressBook
 
 reset = False
 
@@ -42,40 +41,41 @@ def contain_cjk_char(line):
 
     return 0
 
-def assign_pinyin(getName, getPhoneticName, setPhoneticName):
-    name = getName()
+def assign_pinyin(person, propertyName, phoneticPropertyName):
+    name = person.valueForProperty_(propertyName)
 
     if name and contain_cjk_char(name):
-        pname = getPhoneticName()
+        pname = person.valueForProperty_(phoneticPropertyName)
         if not reset and pname:
             return None
 
         name_py = pinyin.hanzi2pinyin(name).capitalize()
-        setPhoneticName(name_py)
+        person.setValue_forProperty_(name_py, phoneticPropertyName)
 
         return (name, name_py)
 
     return None
 
-ab = SBApplication.applicationWithBundleIdentifier_("com.apple.AddressBook")
+ab = AddressBook.ABAddressBook.sharedAddressBook()
 
 if len(sys.argv) > 1 and sys.argv[0] == '-r':
     reset = True
 
 for person in ab.people():
-    fname_pair = assign_pinyin(person.firstName, 
-                               person.phoneticFirstName,
-                               person.setPhoneticFirstName_)
-    lname_pair = assign_pinyin(person.lastName, 
-                               person.phoneticLastName,
-                               person.setPhoneticLastName_)
+    fname_pair = assign_pinyin(person,
+                               AddressBook.kABFirstNameProperty,
+                               AddressBook.kABFirstNamePhoneticProperty)
+    lname_pair = assign_pinyin(person,
+                               AddressBook.kABLastNameProperty,
+                               AddressBook.kABLastNamePhoneticProperty)
 
     if fname_pair or lname_pair:
         print "%s%s (%s%s%s)" % ((fname_pair and fname_pair[0]) or "",
                                  (lname_pair and lname_pair[0]) or "",
-                                 (lname_pair and fname_pair and " ") or "",
                                  (fname_pair and fname_pair[1]) or "",
+                                 (lname_pair and fname_pair and " ") or "",
                                  (lname_pair and lname_pair[1]) or "")
 
 print "Done."
+ab.save()
 
