@@ -14,7 +14,7 @@ AssignPhoneticName.py
 
 1. 关闭 Address Book。
 
-2. 执行
+2. 执行:
 
     python AssignPhoneticName.py
 
@@ -27,7 +27,7 @@ Name。对于已经分配了 Phonetic Name 的，会跳过，除非使用 `-r`
 
 1. 关闭 Address Book。
 
-2. 执行
+2. 执行:
 
     make && ./apn
 
