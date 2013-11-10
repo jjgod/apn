@@ -38,4 +38,4 @@ Name。对于已经分配了 Phonetic Name 的，会跳过，除非使用 `-r`
 
 其他的问题请联系 gzjjgod@gmail.com。
 
-Please use it at your own risk.
+Please use it at your own risk..
